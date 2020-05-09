@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "adminHomeLayout";
+    var persons = Model;
+}
+<div class="box ui-draggable ui-droppable">
+    <div class="box-header">
+        <div class="box-name">
+            <i class="fa fa-table"></i>
+            <span>个人信息</span>
+        </div>
+        <div class="no-move"></div>
+    </div>
+    <div>
+        <div>
+            <form asp-controller="Admin" asp-action="FindPerson">
+                <div class="form-group">
+                    <label class="control-label">个人招聘者账号</label>
+                    <input name="PId" type="text">
+                    <label class="control-label">个人姓名</label>
+                    <input name="PName" type="text">
+                    <label class="control-label">账号状态</label>
+                    <select class="" name="PStatus">
+                        <option value="0">未封禁</option>
+                        <option value="1">已封禁</option>
+                        <option value="2" selected>--默认--</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit">搜索</button>
+                </div>
+                @ViewData["error"]
+            </form>
+        </div>
+    </div>
+    <div class="box-content no-padding">
+        <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+                <tr>
+                    <th>个人账号</th>
+                    <th>姓名</th>
+                    <th>账号状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < persons.Count; i++)
+                {
+                <tr>
+                    <td><a href="#" onclick="showinfo('@persons[i].PId')">@persons[i].PId</a></td>
+                    @if (@ViewBag.Info[i] == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.Info[i].PName</td>
+                    }
+                    @if (persons[i].PStatus == 0)
+                    {
+                        <td>未封禁</td>
+                    }
+                    else
+                    {
+                        <td>已封禁</td>
+                    }
+                    <td>
+                        @if (persons[i].PStatus == 0)
+                        {
+                            <button class="btn btn-warning" onclick="showitem('@persons[i].PId')" type="button">封禁</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-info" onclick="showitem('@persons[i].PId')" type="button">解封</button>
+                        }
+                        <button class="btn btn-danger" onclick="Deleteitem('@persons[i].PId')" type="button">删除</button>
+                        <button class="btn btn-primary" onclick="precruititem('@persons[i].PId')" type="button">招聘信息</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section MyScripts
+    {
+    <script type="text/javascript">
+        function Deleteitem(PId)
+        {
+            if (confirm("确定要删除吗？"))
+            {
+                var url = '@Url.Action("DeletePerson", "Admin")' + '?PId=' + encodeURI(PId);
+                location.href = url;
+            }
+        }
+        function showitem(PId)
+        {
+            var url = '@Url.Action("UpdatePStatus", "Admin")' + '?PId=' + encodeURI(PId);
+            location.href = url;
+        }
+        
+        function showinfo(PId)
+        {
+
+            var url = '@Url.Action("PersonInfoView","Admin")' + '?PId=' + encodeURI(PId);
+            location.href = url;
+        }
+        
+         function precruititem(PId)
+        {
+            var url = '@Url.Action("PRecruitList", "Admin")' + '?PId=' + encodeURI(PId);
+            location.href = url;
+        }
+    </script>
+}

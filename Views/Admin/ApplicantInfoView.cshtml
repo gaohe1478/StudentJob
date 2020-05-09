@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "adminHomeLayout";
+    var Info = Model;
+}
+<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+    <thead>
+        <tr>
+            <th>个人信息页面</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="primary">
+            <td><code>姓名</code>@Info.AName</td>
+        </tr>
+        <tr class="primary">
+            <td><code>性别</code>@Info.ASex</td>
+        </tr>
+        <tr class="primary">
+            <td><code>身份证号</code>@Info.ANumber</td>
+        </tr>
+        <tr class="primary">
+            <td><code>学校</code>@Info.ACollege</td>
+        </tr>
+        <tr class="primary">
+            <td><code>专业</code>@Info.AMajor</td>
+        </tr>
+        <tr class="primary">
+            <td><code>技能</code>@Info.ASkill</td>
+        </tr>
+        <tr class="primary">
+            <td><code>爱好</code>@Info.AHobby</td>
+        </tr>
+        <tr class="primary">
+            <td><code>语言</code>@Info.ALanguage</td>
+        </tr>
+        <tr class="primary">
+            <td><code>地址</code>@Info.AAddress</td>
+        </tr>
+        <tr class="primary">
+            <td><code>邮箱</code>@Info.AEmail</td>
+        </tr>
+        <tr class="primary">
+            <td><code>电话</code>@Info.ATel</td>
+        </tr>
+        <tr class="primary">
+            <td><code>经验</code>@Info.AExper</td>
+        </tr>
+        <tr class="primary">
+            <td><code>备注</code>@Info.ARemark</td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                @if (ViewData["status"].ToString().Equals("0"))
+                {
+                    <button class="btn btn-warning" onclick="showitem('@Info.AId')" type="button">封禁</button>
+                }
+                else
+                {
+                    <button class="btn btn-info" onclick="showitem('@Info.AId')" type="button">解封</button>
+                }
+                <button class="btn btn-danger" onclick="Deleteitem('@Info.AId')" type="button">删除</button>
+                <button class="btn btn-primary" onclick="Intentionitem('@Info.AId')" type="button">求职信息</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@section MyScripts
+    {
+    <script type="text/javascript">
+        function Deleteitem(AId)
+        {
+            if (confirm("确定要删除吗？"))
+            {
+                var url = '@Url.Action("DeleteApplicant", "Admin")' + '?AId=' + encodeURI(AId);
+                location.href = url;
+            }
+        }
+        function showitem(AId)
+        {
+            var url = '@Url.Action("UpdateAStatus", "Admin")' + '?AId=' + encodeURI(AId);
+            location.href = url;
+
+        }
+        function Intentionitem(AId)
+        {
+            var url = '@Url.Action("IntentionList", "Admin")' + '?AId=' + encodeURI(AId);
+            location.href = url;
+        }
+    </script>
+}
+
+@ViewData["error"]
+@*@if (ViewData["status"].ToString().Equals("0"))
+    {
+        <form asp-action="UpdateAStatus" asp-controller="Admin">
+            <div class="text-center">
+                <button class="btn btn-primary" name="AId" value=@Info.AId type="submit">封禁</button>
+            </div>
+        </form>
+    }
+    else if(ViewData["status"].ToString().Equals("1"))
+    {
+        <form asp-action="UpdateAStatus" asp-controller="Admin">
+            <div class="text-center">
+                <button class="btn btn-primary" name="AId" value=@Info.AId type="submit">解封</button>
+            </div>
+        </form>
+    }
+
+
+    <form asp-action="DeleteApplicant" asp-controller="Admin">
+        <div class="text-center">
+            <button class="btn btn-primary" name="AId" value=@Info.AId type="submit">删除</button>
+        </div>
+    </form>
+
+    <form asp-action="DeleteApplicant" asp-controller="Admin">
+        <div class="text-center">
+            <button class="btn btn-primary" name="AId" value=@Info.AId type="submit">应聘信息</button>
+        </div>
+    </form>*@

@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="author" content="">
+    <meta name="keyword" content=" template, html5, css3, bootstrap4">
+    <meta name="description" content="HTML5 and CSS3 Template Based on Bootstrap 4">
+    <title>Home</title>
+    <link rel="stylesheet" href="~/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/sweetalert/dist/sweetalert.css">
+    <link rel="stylesheet" href="~/css/stisla.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/img/jianzhi1.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="ion-navicon"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="mr-auto"></div>
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="ajax-link" href="@Url.Action("Companys","Company")">个人中心</a>
+                        <img src="~/img/timg.jpg" alt="Logo">
+                    </li>
+                   
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <section class="hero bg-overlay" id="hero" data-bg="~/img/hero.jpeg" style="background-image: url(&quot;img/hero.jpeg&quot;); background-position: center center; background-attachment: fixed;">
+        <div class="overlay"></div>
+        <div class="text">
+            <p class="lead">I'm <span class="bold">Part time platform</span>, based on <span class="bold">Everyone</span>.</p>
+            <h1>为您找到最合适的兼职 &amp;为您找到最合适的员工</h1>
+
+        </div>
+    </section>
+    <section class="padding" id="selectinfo" margin:0 auto style="background-color:#312d2d;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12 col-sm-12" margin：0 auto；>
+                    <form asp-controller="ViewBody" asp-action="ViewBodySearchc" method="get">
+
+                        <input type="date" name="StartTime" value="2000-01-01" placeholder="请选择日期" pattern="yyyy-MM-dd" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                        <select id="SalaryOpt" name="Salary" class="select">
+                            <option value="" selected>请选择期望工资-----</option>
+                            <option value="0-1000"> 1000以下</option>
+                            <option value="1000-2000">1000 - 2000 </option>
+                            <option value="2000-3000">2000-3000</option>
+                            <option value="3000-9999"> 3000以上</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <select id="JobOpt" name="Job" class="select">
+                            <option value="" selected>请选择兼职类别-----</option>
+                            <option value="家教">家教类 </option>
+                            <option value="配送">配送类</option>
+                            <option value="宣传">宣传类 </option>
+                            <option value="客服">客服类</option>
+                            <option value="其他">其他 </option>
+                        </select>
+                        <p></p>
+                        <div class="form-group" margin:0 auto>
+                            <div class="ajax-link" href="@Url.Action("ViewBodySearchc","ViewBody")">
+                                <div class="col-sm-9 col-sm-offset-3" margin:0 auto>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button class="btn btn-primary" type="submit">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section>
+        @RenderBody()
+    </section>
+
+</body>
+</html>

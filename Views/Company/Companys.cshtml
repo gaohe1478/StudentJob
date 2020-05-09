@@ -1,0 +1,362 @@
+﻿
+@*@model PartTimeJob.Models.Recruit1*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/css2/minified.css" rel="stylesheet">
+    <link href="~/css2/innerpage.css" rel="stylesheet">
+    <link href="~/css2/bootstrap.min.css" rel="stylesheet">
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link id="theme-stylesheet" href="~/css2/style.default.css" rel="stylesheet">
+    <link href="~/css2/profile.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="relative">
+                <ul class="bc unstyled clearfix">
+                    <li><a href='@Url.Action("Viewc","ViewBody")'>首页</a></li>
+                    <li class="active">公司主页</li>
+                    <li><a href='@Url.Action("Login","home")'>注销</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-inner chart-cont" style="margin-left: 120px;background-color: #e2e2e2;">
+        <div class="row mt-2" id="card-prof">
+            <div class="col-md-2">
+                <div class="card hovercard">
+                    <div class="cardheader" style="background-color: white;"></div>
+                    <div class="avatar">
+                        <img class="img-fluid" alt="" src="~/img/公司.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a href="#" target="_blank">@ViewData["cname"]</a>
+                        </div>
+                        <div class="desc">@ViewData["ctel"]</div>
+                        <hr>
+                    </div>
+                    <nav class="nav text-center prof-nav">
+                        <ul class="list-unstyled ">
+                            <li><a href="#">公司信息</a></li>
+                            <li><a href="#">公司信息编辑</a></li>
+                            <li><a href="#">密码修改</a></li>
+                            <li><a href="#">招聘信息发布</a></li>
+                            <li><a href="#">招聘信息管理</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="card hovercard">
+                    <div class="tab" role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item ">
+                                <a class="nav-link active" role="tab" aria-expanded="true" href="#profile" data-toggle="tab"><span><i class="fa fa-user"></i></span>公司信息</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#references" data-toggle="tab"><span><i class="fa fa-cog"></i></span> 信息编辑</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#buzz" data-toggle="tab"><span><i class="fa fa-inbox"></i></span> 发布招聘信息</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#password" data-toggle="tab"><span><i class="fa fa-cog"></i></span> 修改密码</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#guanli" data-toggle="tab"><span><i class="fa fa-cog"></i></span> 招聘管理</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-expanded="true">
+
+                                <div class="row mt-2">
+                                    <h3 class="col-12 mb-2"> 公司信息</h3>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-child"> 公司名称: </i></strong>    @ViewData["cname"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-building"> 所属行业: </i></strong>   @ViewData["cindustry"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-pencil"> 公司简介: </i></strong>    @ViewData["cremark"]
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-circle"> 规模: </i></strong>   @ViewData["csize"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-phone"> 联系电话: </i></strong>    @ViewData["ctel"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-map-marker"> 地址: </i></strong>   @ViewData["caddress"]
+                                        </div>
+                                    </div>
+                                </div>
+                                <font color="red">@ViewData["error"]</font>
+                            </div>
+                            <div class="tab-pane fade" id="references" role="tabpanel" aria-expanded="false">
+                                <form asp-action="Companyinfo" asp-controller="Company">
+                                    <div class="row mx-2">
+                                        <div class="col-md-12 panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-edit"></i> 修改公司信息</h3><br>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">公司名称</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-text-input" type="text" name="cname" value="@ViewData["cname"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">所属行业</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="cindustry" value="@ViewData["cindustry"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">公司简介</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="cremark" value="@ViewData["cremark"]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">规模</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="csize" value="@ViewData["csize"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-date-input">联系电话</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="tel" name="ctel" value="@ViewData["ctel"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">地址</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="caddress" value="@ViewData["caddress"]">
+                                                </div>
+                                            </div>
+                                            @*<a style="font-size: 16px;color: #666666;font-weight: 700;" type="submit" href="#">提交</a>*@
+                                            <div>
+                                                <button class="btn-blue" type="submit">提交</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="buzz" role="tabpanel" aria-expanded="false">
+                                <form asp-action="Recruit" asp-controller="Company">
+                                    <div class="row mx-2">
+                                        <div class="col-md-12 panel-heading">
+                                            <h3 class="panel-title">发布招聘信息</h3>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">开始时间</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-text-input" type="date" name="rstartdate">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">工作类别</label>
+                                                <div class="col-9">
+                                                    <select class="form-control" id="example-text-input" type="text" name="rtype">
+                                                        <option value="请选择">工作类别</option>
+                                                        <option value="家教">家教类</option>
+                                                        <option value="配送">配送类</option>
+                                                        <option value="宣传">宣传类</option>
+                                                        <option value="客服">客服类</option>
+                                                        <option value="其他">其他</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">地址</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="raddress">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">联系人</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="rpeople">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">工作描述</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="rdescribe">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">结束时间</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-text-input" type="date" name="renddate">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">工资</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-text-input" type="text" name="rsalary">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">联系电话</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="rtel">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">工作要求</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="rrequire">
+                                                </div>
+                                            </div>                                            
+                                            <div>
+                                                <button class="btn-blue" type="submit">发布</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="password" role="tabpanel" aria-expanded="false">
+                                <div class="panel panel-default widget">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"> 密码修改</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        @*<ul class="list-group">*@
+                                        <div class="container-fluid">
+                                            <div class="row" id="page-login">
+                                                <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                                                    <div class="text-right">
+                                                    </div>
+                                                    <div class="box">
+                                                        <form asp-action="ChangePwd" asp-controller="Company">
+                                                            <div class="box-content">
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label">旧密码</label>
+                                                                    <input name="old" class="form-control" type="password">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">输入新密码</label>
+                                                                    <input name="new1" class="form-control" type="password">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">再次输入新密码</label>
+                                                                    <input name="new2" class="form-control" type="password">
+                                                                </div>
+                    
+                                                                <div class="text-center">
+                                                                    <button class="btn-blue" type="submit">修改</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*</ul>*@
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="guanli" role="tabpanel" aria-expanded="false">
+                                <div class="panel panel-default widget">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"> 招聘信息管理</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            @foreach (var res in ViewBag.a)
+                                            {
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        
+                                                        <div class=" col-md-3">
+                                                            <div>
+                                                                <a class="mic-info">
+                                                                    <i>招聘信息编号: </i>    @res.RId
+                                                                </a>
+                                                                <div class="mic-info">
+                                                                    <i>工作类别: </i>    @res.RType
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>开始日期: </i>    @res.RStartDate
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>结束日期: </i>    @res.REndDate
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>工资: </i>    @res.RSalary
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>发布时间: </i>    @res.RCreatTime
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" col-md-3">
+                                                            <div>
+                                                                <a class="mic-info">
+                                                                    <i>联系人: </i>    @res.RPeople
+                                                                </a>
+                                                                <div class="mic-info">
+                                                                    <i>联系电话: </i>    @res.RTel
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>地址: </i>    @res.RAddress
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>要求: </i>    @res.RRequire
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>工作描述: </i>    @res.RDescribe
+                                                                </div>
+                                                            </div>
+                                                            <form asp-action="companys" asp-controller="Company">
+                                                                <input type="hidden" name="RId" value="@res.RId">
+                                                                <button name="flag" value="no" class="btn-blue" type="submit">删除</button>
+                                                            </form>
+                                                        </div>                                                        
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                       
+                  
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+     </div>
+    <iframe width="100%" height="340px" src="footer.html" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" vspace="0" hspace="0"></iframe>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/front.js"></script>
+</body>
+</html>
+

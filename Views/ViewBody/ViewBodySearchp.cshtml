@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "Homelayoutp";
+}
+
+
+<section class="padding bg-grey" id="blog">
+    <div class="container">
+        <h2 class="section-title">搜索结果出来了</h2>
+        <p class="section-lead text-muted">看看有没有适合你的</p>
+        <div class="section-body">
+            <div class="row col-spacing">
+                @foreach (var res in ViewBag.Result)
+                {
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card">
+                            <img class="card-img-top" src="~/img/news/img04.jpg" alt="Article Image">
+                            <div class="card-body">
+                                <div class="card-subtitle mb-2 text-muted">由 <a href="#">@res.RPeople</a> 于 @res.RCreatTime 发布</div>
+                                <h4 class="card-title"><a href="#" data-toggle="read" data-id="1">工作类型：@res.RType    工资:  @res.RSalary    工作地址：@res.RAddress</a></h4>
+                                <p class="card-text">工作描述：@res.RDescribe</p>
+                                <p1 class="card-text">工作描述：@res.RRequire</p1>
+                                <p></p>
+                                <p2 class="card-text">有效日期：@res.RStartDate -- @res.REndDate</p2>
+                                <div class="text-right">
+                                    <input type="hidden" name="RId" value="@res.RId">
+
+                                    @*<button class="btn btn-primary" type="button">投递</button>*@
+
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+
+    </div>
+</section>

@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "adminHomeLayout";
+    var companys = Model;
+}
+<div class="box ui-draggable ui-droppable">
+    <div class="box-header">
+        <div class="box-name">
+            <i class="fa fa-table"></i>
+            <span>公司信息</span>
+        </div>
+        <div class="no-move"></div>
+    </div>
+    <div>
+        <div>
+            <form asp-controller="Admin" asp-action="FindCompany">
+                <div class="form-group">
+                    <label class="control-label">公司账号</label>
+                    <input name="CId" type="text">
+                    <label class="control-label">公司名称</label>
+                    <input name="CName" type="text">
+                    <label class="control-label">账号状态</label>
+                    <select class="" name="CStatus">
+                        <option value="0">未封禁</option>
+                        <option value="1">已封禁</option>
+                        <option value="2" selected>--默认--</option>
+                    </select>
+                    <button class="btn btn-primary" type="submit">搜索</button>
+                </div>
+                @ViewData["error"]
+            </form>
+        </div>
+    </div>
+    <div class="box-content no-padding">
+        <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+                <tr>
+                    <th>公司账号</th>
+                    <th>名称</th>
+                    <th>账号状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < companys.Count; i++)
+                {
+                <tr>
+                    <td><a href="#" onclick="showinfo('@companys[i].CId')">@companys[i].CId</a></td>
+                    @if (@ViewBag.Info[i] == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.Info[i].CName</td>
+                    }
+                    @if (companys[i].CStatus == 0)
+                    {
+                        <td>未封禁</td>
+                    }
+                    else
+                    {
+                        <td>已封禁</td>
+                    }
+                    <td>
+                        @if (companys[i].CStatus == 0)
+                        {
+                            <button class="btn btn-warning" onclick="showitem('@companys[i].CId')" type="button">封禁</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-info" onclick="showitem('@companys[i].CId')" type="button">解封</button>
+                        }
+                        <button class="btn btn-danger" onclick="Deleteitem('@companys[i].CId')" type="button">删除</button>
+                        <button class="btn btn-primary" onclick="crecruititem('@companys[i].CId')" type="button">招聘信息</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section MyScripts
+    {
+    <script type="text/javascript">
+        function Deleteitem(CId)
+        {
+            if (confirm("确定要删除吗？"))
+            {
+                var url = '@Url.Action("DeleteCompany", "Admin")' + '?CId=' + encodeURI(CId);
+                location.href = url;
+            }
+        }
+        function showitem(CId)
+        {
+            var url = '@Url.Action("UpdateCStatus", "Admin")' + '?CId=' + encodeURI(CId);
+            location.href = url;
+        }
+        function showinfo(CId)
+        {
+
+            var url = '@Url.Action("CompanyInfoView","Admin")' + '?CId=' + encodeURI(CId);
+            location.href = url;
+        }
+        function crecruititem(CId)
+        {
+            var url = '@Url.Action("CRecruitList", "Admin")' + '?CId=' + encodeURI(CId);
+            location.href = url;
+        }
+    </script>
+}

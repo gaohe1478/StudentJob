@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>注册界面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <script>addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}</script>
+    <link href="~/css/style1.css" rel="stylesheet" type="text/css" media="all">
+    <link href="~/css/fontawesome-all.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+</head>
+
+<body>
+    <div id="bg">
+        <canvas width="2116" height="590"></canvas>
+        <canvas width="2116" height="590"></canvas>
+        <canvas width="2116" height="590"></canvas>
+    </div>
+    <h1>注册界面</h1>
+    <div class="sub-main-w3">
+        <form asp-action="register1" asp-controller="Home">
+            <div class="form-style-agile">
+                <label>
+                    <i class="fas fa-user"></i>
+                    用户名
+                </label>
+                <input name="username" required="" type="text"maxlength="8">
+            </div>
+            <div class="form-style-agile">
+                <label>
+                    <i class="fas fa-unlock-alt"></i>
+                    密码
+                </label>
+                <input name="password1" required=""id="password1" value=""class="input"type="password"maxlength="15">
+                @*<script language="JavaScript" type="text/javascript">
+                    str = getElmentById('password1').value
+                    if (str.length < 6) {
+                        return flase;
+                        alert('小于六位')
+                    }
+                </script>*@
+            </div>
+            <div class="form-style-agile">
+                <label>
+                    <i class="fas fa-unlock-alt"></i>
+                    再次输入密码
+                </label>
+                <input name="password2" required="" type="password"maxlength="15">
+            </div>
+            <font color="red">@ViewData["error"]</font>
+            <div class="text-center">
+                <input type="radio" name="status" value="student"><font color="white">大学生（应聘方）</font>
+                <input type="radio" name="status" value="company"><font color="white">公司（招聘方）</font>
+                <input type="radio" name="status" value="person"><font color="white">个人（招聘方）</font>
+            </div>
+            <input type="submit" value="注册">
+        </form>
+    </div>
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/canva_moving_effect.js"></script>
+</body>
+</html>

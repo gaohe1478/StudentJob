@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "adminHomeLayout";
+    var Info = Model;
+}
+<table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+    <thead>
+        <tr>
+            <th>个人信息页面</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="primary">
+            <td><code>姓名</code>@Info.PName</td>
+        </tr>
+        <tr class="primary">
+            <td><code>性别</code>@Info.PSex</td>
+        </tr>
+        <tr class="primary">
+            <td><code>电话</code>@Info.PTel</td>
+        </tr>
+        <tr class="primary">
+            <td><code>地址</code>@Info.PAddress</td>
+        </tr>
+        <tr class="primary">
+            <td><code>身份证</code>@Info.PNumber</td>
+        </tr>
+        <tr class="primary">
+            <td><code>备注</code>@Info.CRemark</td>
+        </tr>
+        <tr class="text-center">
+            <td>
+                @if (ViewData["status"].ToString().Equals("0"))
+                {
+                    <button class="btn btn-warning" onclick="showitem('@Info.PId')" type="button">封禁</button>
+                }
+                else
+                {
+                    <button class="btn btn-info" onclick="showitem('@Info.PId')" type="button">解封</button>
+                }
+                <button class="btn btn-danger" onclick="Deleteitem('@Info.PId')" type="button">删除</button>
+                <button class="btn btn-primary" onclick="precruititem('@Info.PId')" type="button">招聘信息</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section MyScripts
+    {
+    <script type="text/javascript">
+        function Deleteitem(PId)
+        {
+            if (confirm("确定要删除吗？"))
+            {
+                var url = '@Url.Action("DeletePerson", "Admin")' + '?PId=' + encodeURI(PId);
+                location.href = url;
+            }
+        }
+        function showitem(PId)
+        {
+            var url = '@Url.Action("UpdatePStatus", "Admin")' + '?PId=' + encodeURI(PId);
+            location.href = url;
+        }
+
+         function precruititem(PId)
+        {
+            var url = '@Url.Action("PRecruitList", "Admin")' + '?PId=' + encodeURI(PId);
+            location.href = url;
+        }
+    </script>
+}

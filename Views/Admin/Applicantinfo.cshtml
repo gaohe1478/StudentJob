@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "adminHomeLayout";
+    var applicants = Model;
+}
+
+    
+<div class="box ui-draggable ui-droppable">
+    <div class="box-header">
+        <div class="box-name">
+            <i class="fa fa-table"></i>
+            <span>应聘者信息</span>
+        </div>
+        <div class="no-move"></div>
+    </div>
+    <div>
+        <form asp-controller="Admin" asp-action="FindApplicant">
+            <div class="form-group">
+                <label class="control-label">应聘者账号</label>
+                <input name="AId" type="text">
+                <label class="control-label">应聘者姓名</label>
+                <input name="AName" type="text">
+                <label class="control-label">账号状态</label>
+                <select class="" name="AStatus">
+                    <option value="0">未封禁</option>
+                    <option value="1">已封禁</option>
+                    <option value="2" selected>--默认--</option>
+                </select>
+                <button class="btn btn-primary" type="submit">搜索</button>
+            </div>
+            @ViewData["error"]
+        </form>
+    </div>
+    <div class="box-content no-padding">
+        <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+                <tr>
+                    <th>应聘者账号</th>
+                    <th>姓名</th>
+                    <th>账号状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < applicants.Count; i++)
+                {
+                <tr>
+                    <td><a href="#" onclick="showinfo('@applicants[i].AId')">@applicants[i].AId</a></td>
+                    @if (@ViewBag.Info[i] == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@ViewBag.Info[i].AName</td>
+                    }
+                    @if (applicants[i].AStatus == 0)
+                    {
+                        <td>未封禁</td>
+                    }
+                    else
+                    {
+                        <td>已封禁</td>
+                    }
+
+
+                    <td>
+                        @if (applicants[i].AStatus == 0)
+                        {
+                            <button class="btn btn-warning" onclick="showitem('@applicants[i].AId')" type="button">封禁</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-info" onclick="showitem('@applicants[i].AId')" type="button">解封</button>
+                        }
+                        <button class="btn btn-danger" onclick="Deleteitem('@applicants[i].AId')" type="button">删除</button>
+                        <button class="btn btn-primary" onclick="Intentionitem('@applicants[i].AId')" type="button">求职信息</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section MyScripts
+    {
+    <script type="text/javascript">
+        function Deleteitem(AId)
+        {
+            if (confirm("确定要删除吗？"))
+            {
+                var url = '@Url.Action("DeleteApplicant", "Admin")' + '?AId=' + encodeURI(AId);
+                location.href = url;
+            }
+        }
+        function showitem(AId)
+        {
+            var url = '@Url.Action("UpdateAStatus", "Admin")' + '?AId=' + encodeURI(AId);
+            location.href = url;
+
+        }
+        function showinfo(AId)
+        {
+
+            var url = '@Url.Action("ApplicantInfoView","Admin")' + '?AId=' + encodeURI(AId);
+            location.href = url;
+        }
+        
+        function Intentionitem(AId)
+        {
+            var url = '@Url.Action("IntentionList", "Admin")' + '?AId=' + encodeURI(AId);
+            location.href = url;
+        }
+    </script>
+}

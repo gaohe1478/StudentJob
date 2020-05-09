@@ -1,0 +1,340 @@
+﻿@*@model PartTimeJob.Models.Recruit1*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/css2/minified.css" rel="stylesheet">
+    <link href="~/css2/innerpage.css" rel="stylesheet">
+    <link href="~/css2/bootstrap.min.css" rel="stylesheet">
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link id="theme-stylesheet" href="~/css2/style.default.css" rel="stylesheet">
+    <link href="~/css2/profile.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="relative">
+                <ul class="bc unstyled clearfix">
+                    <li><a href='@Url.Action("ViewApplicant","ViewBody")'>首页</a></li>
+                    <li class="active">个人主页</li>
+                    <li><a href='@Url.Action("Login","home")'>注销</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-inner chart-cont" style="margin-left: 120px;background-color: #e2e2e2;">
+        <div class="row mt-2" id="card-prof">
+            <div class="col-md-2">
+                <div class="card hovercard">
+                    <div class="cardheader" style="background-color: white;"></div>
+                    <div class="avatar">
+                        <img class="img-fluid" alt="" src="~/img/大学生.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a href="#" target="_blank">@ViewData["aname"]</a>
+                        </div>
+                        <div class="desc">@ViewData["aemail"]</div>
+                        <hr>
+                    </div>
+                    <nav class="nav text-center prof-nav">
+                        <ul class="list-unstyled ">
+                            <li><a href="#">个人信息</a></li>
+                            <li><a href="#">个人信息编辑</a></li>
+                            <li><a href="#">投递状态管理</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="card hovercard">
+                    <div class="tab" role="tabpanel">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item ">
+                                <a class="nav-link active" role="tab" aria-expanded="true" href="#profile" data-toggle="tab"><span><i class="fa fa-user"></i></span>个人信息</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#references" data-toggle="tab"><span><i class="fa fa-cog"></i></span> 个人信息编辑</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#buzz" data-toggle="tab"><span><i class="fa fa-inbox"></i></span> 投递状态</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" role="tab" aria-expanded="false" href="#password" data-toggle="tab"><span><i class="fa fa-cog"></i></span> 修改密码</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content tabs">
+                            <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-expanded="true">
+
+                                <div class="row mt-3">
+                                    <h3 class="col-12 mb-2"> 个人信息</h3>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-circle"> 姓名: </i></strong>    @ViewData["aname"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-child"> 性别: </i></strong>   @ViewData["asex"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-pencil"> 身份证号: </i></strong>    @ViewData["anumber"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-map-marker"> 住址: </i></strong>   @ViewData["aaddress"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-envelope"> 邮箱: </i></strong>   @ViewData["aemail"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-phone"> 电话: </i></strong>   @ViewData["atel"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-pencil"> 备注: </i></strong>   @ViewData["aremark"]
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-building"> 学校: </i></strong>   @ViewData["acollege"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-map"> 专业: </i></strong>    @ViewData["amajor"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-circle"> 技能: </i></strong>   @ViewData["askill"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-heart"> 爱好: </i></strong>   @ViewData["ahobby"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-globe"> 外语能力: </i></strong>   @ViewData["alanguage"]
+                                        </div>
+                                        <div class="form-group">
+                                            <strong class="mr-5"><i class="fa fa-pencil"> 工作经验: </i></strong>   @ViewData["aexper"]
+                                        </div>
+                                    </div>
+                                    <font color="red">@ViewData["error"]</font>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="references" role="tabpanel" aria-expanded="false">
+                                <form asp-action="applicanti" asp-controller="applicant">
+                                    <div class="row mx-2">
+                                        <div class="col-md-12 panel-heading">
+                                            <h3 class="panel-title"><i class="fa fa-edit"></i> 修改个人信息</h3><br>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">姓名</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-text-input" type="text" name="aname" value="@ViewData["aname"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-email-input">性别</label>
+                                                <div class="col-9">
+                                                    <select class="form-control" id="example-email-input" type="text" name="asex" value="@ViewData["asex"]">
+                                                        <option value="男">男</option>
+                                                        <option value="女">女</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">身份证号</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="number" name="anumber" value="@ViewData["anumber"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">地址</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="text" name="aaddress" value="@ViewData["aaddress"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">邮箱</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-url-input" type="email" name="aemail" value="@ViewData["aemail"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-url-input">电话</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" id="example-tel-input" type="tel" name="atel" value="@ViewData["atel"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">备注</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" rows="2" name="aremark" value="@ViewData["aremark"]">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-text-input">学校</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="acollege" value="@ViewData["acollege"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-date-input">专业</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="amajor" value="@ViewData["amajor"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">技能</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="askill" value="@ViewData["askill"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">爱好</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="ahobby" value="@ViewData["ahobby"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">外语能力</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" name="alanguage" value="@ViewData["alanguage"]">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class=" col-form-label" style="width: 85px;" for="example-tel-input">工作经验</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" rows="2" name="aexper" value="@ViewData["aexper"]">
+                                                </div>
+                                            </div>
+                                            @*<a style="font-size: 16px;color: #666666;font-weight: 700;" type="submit" href="#">提交</a>*@
+                                            <div>
+                                                <button class="btn-blue" type="submit">提交</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="buzz" role="tabpanel" aria-expanded="false">
+                                <div class="panel panel-default widget">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"> 投递状态一览</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <ul class="list-group">
+                                            @foreach (var list in ViewBag.list)
+                                            {
+                                                <li class="list-group-item">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <img class="img-circle img-fluid" alt="" src="images/bjb/bjb01.jpg">
+                                                        </div>
+                                                        <div class=" col-md-3">
+                                                            <div>
+                                                                <a class="mic-info">
+                                                                    <i>兼职类型: </i>    @list.RType
+                                                                </a>
+                                                                <div class="mic-info">
+                                                                    <i>工作地点: </i>    @list.RAddress
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>开始日期: </i>    @list.RStartDate
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>工作描述: </i>    @list.RDescribe
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class=" col-md-3">
+                                                            <div>
+                                                                <a class="mic-info">
+                                                                    <i>兼职要求: </i>    @list.RRequire
+                                                                </a>
+                                                                <div class="mic-info">
+                                                                    <i>联系电话: </i>    @list.RTel
+                                                                </div>
+                                                                <div class="mic-info">
+                                                                    <i>结束日期: </i>    @list.REndDate
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @*<div>
+                                                                <a class="btn btn-sm btn-hover btn-primary" href="product.html"><span class="fa fa-share-alt" style="padding-right:3px;"></span></a>
+                                                            </div>
+                                                            <div style="margin-top: 20px;">
+                                                                <a class="btn btn-sm btn-hover btn-danger" href="#"><span class="fa fa-remove" style="padding-right:3px;"></span></a>
+                                                            </div>*@
+                                                            <a class="mic-info">
+                                                                    <i>状态: </i>    <font color="red">@list.IStatus</font>
+</a>
+                                                        </div>
+                                                    </div>
+                                                </li>   
+                                            }
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="password" role="tabpanel" aria-expanded="false">
+                                <div class="panel panel-default widget">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"> 密码修改</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        @*<ul class="list-group">*@
+                                                <div class="container-fluid">
+                                                    <div class="row" id="page-login">
+                                                        <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                                                            <div class="text-right">
+                                                            </div>
+                                                            <div class="box">
+                                                                <form asp-action="Applicantpwf" asp-controller="Applicant">
+                                                                    <div class="box-content">
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">旧密码</label>
+                                                                            <input name="old" class="form-control" type="password">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">输入新密码</label>
+                                                                            <input name="new1" class="form-control" type="password">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="control-label">再次输入新密码</label>
+                                                                            <input name="new2" class="form-control" type="password">
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button class="btn-blue" type="submit">修改</button>
+                                                                        </div>
+                                                                        <font color="red">@ViewData["error1"]</font>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        @*</ul>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <iframe width="100%" height="340px" src="footer.html" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" vspace="0" hspace="0"></iframe>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/front.js"></script>
+</body>
+</html>
+
